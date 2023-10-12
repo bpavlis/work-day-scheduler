@@ -6,6 +6,7 @@ var saveBtn = $('.saveBtn')
 var userDescription;
 var dateNow;
 var timeNow;
+var rightNow;
 
 $(function () {   //self invoking function
 
@@ -21,7 +22,25 @@ $(function () {   //self invoking function
     localStorage.setItem(inputText, time);
   })
 
-  
+
+/*
+  var hourData = "";
+  var hourName = "1200am";
+
+  var generatingNewBlock = $(`
+    <div id="hour-9" class="row time-block ${timeClass}">
+      <div class="col-2 col-md-1 hour text-center py-3">${hourName}</div>
+      <textarea class="col-8 col-md-10 description" rows="3"> 
+      ${hourData}
+      </textarea>
+      <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+        <i class="fas fa-save" aria-hidden="true"></i>
+      </button>
+    </div>
+  `);
+  //append back into main calendar itself
+  document.body.appendChild("container-lg")
+*/
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
