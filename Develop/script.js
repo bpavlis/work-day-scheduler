@@ -4,21 +4,24 @@
 var timeDisplay = $('#currentDay')
 var saveBtn = $('.saveBtn')
 var userDescription;
+var dateNow;
+var timeNow;
 
 $(function () {   //self invoking function
 
   //date header
-  var rightNow = dayjs().format('MMM DD, YYYY');
-  timeDisplay.text(rightNow);
+  var dateNow = dayjs().format('MMM DD, YYYY');
+  timeDisplay.text(dateNow);
 
   //saving to local storage
   $(saveBtn).on("click", function(){
     var inputText = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("id")
+    var time = $(this).parent().attr("id");
 
-    localStorage.setItem(inputText, time)
+    localStorage.setItem(inputText, time);
   })
 
+  
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
@@ -34,11 +37,39 @@ $(function () {   //self invoking function
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
+  $(".time-block").each(function(){
+    var blockTime = parseInt($(this).attr("id").split("hour")[1]);
+
+    if (blockTime === rightNow){
+      $(this).removeClass("future");
+      $(this).addClass("present");
+      $(this).removeClass("past");
+    }else if (blockTime < rightNow){
+      $(this).removeClass("future");
+      $(this).removeClass("present");
+      $(this).addClass("past");
+    }else {
+      $(this).addClass("future");
+      $(this).removeClass("present");
+      $(this).removeClass("past");
+    }
+  })
+  
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
+
+  $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+  $("#hour-10 .description").val(localStorage.getItem("hour-10"));
+  $("#hour-11 .description").val(localStorage.getItem("hour-11"));
+  $("#hour-12 .description").val(localStorage.getItem("hour-12"));
+  $("#hour-13 .description").val(localStorage.getItem("hour-13"));
+  $("#hour-14 .description").val(localStorage.getItem("hour-14"));
+  $("#hour-15 .description").val(localStorage.getItem("hour-15"));
+  $("#hour-16 .description").val(localStorage.getItem("hour-16"));
+  $("#hour-17 .description").val(localStorage.getItem("hour-17"));
   
   
 });
